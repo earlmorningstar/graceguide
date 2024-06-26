@@ -1,0 +1,325 @@
+@import url("https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+/* NavBar Section ---- */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.active {
+  color: #dbddc6;
+}
+
+.root-nav {
+  font-size: 16px;
+  font-family: "Comic Neue", cursive;
+  font-weight: 300;
+  text-decoration: none;
+  color: #c9ce8c;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+.root-nav::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 3px;
+  left: 0;
+  background-color: #dbddc6;
+  transition: width 0.3s ease-in-out;
+}
+
+.root-nav:hover {
+  color: #dbddc6;
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  color: #c9ce8c;
+}
+
+.search-btn > span {
+  cursor: pointer;
+}
+
+.search-btn > input {
+  color: #c9ce8c;
+  border: none;
+  padding: 4px 0 4px 4px;
+  background-color: #3e432f;
+}
+
+.search-btn > input::placeholder {
+  color: #c9ce8c;
+  font-size: 15px;
+  font-family: "Comic Neue", cursive;
+  font-weight: 300;
+}
+
+.search-btn > input:focus::placeholder {
+  color: #c9ce8c;
+}
+
+.search-btn > input:active {
+  outline: none;
+}
+
+.search-btn > input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #c9ce8c;
+}
+
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  animation: slideFromLeft 0.5s ease-in-out;
+}
+
+.nav-link-dropDown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: #3e432f;
+  padding: 40px 0 30px 0;
+  width: 100%;
+  height: 90vh;
+  border-bottom: 1px solid #c9ce8c;
+}
+
+.root-nav-dropDown {
+  font-size: 23px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  color: #c9ce8c;
+}
+
+.root-nav-dropDown:hover {
+  color: #f0f1da;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links > span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* HeroSection----  */
+
+.heroSection {
+  background-color: #c9ce8c;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #3e432f;
+  font-style: normal;
+}
+
+.heroSection > h1 {
+  font-size: 85px;
+  font-weight: 500;
+}
+
+.heroSection > span {
+  font-size: 22px;
+  font-family: "Comic Neue", cursive;
+  font-weight: 300;
+}
+
+.image-container > img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: auto;
+  object-fit: fill;
+}
+
+.image-container {
+        background-color: #232c08;
+    }
+
+/* OurJourney Section---- */
+
+.oj-bg-color {
+  background-color: #c9ce8c;
+}
+
+.ourjourney-parent {
+  background-color: #232c08;
+  border-radius: 30px;
+  color: #c9ce8c;
+  padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.ourjourney-holder > h2 {
+  font-size: 64px;
+  margin-bottom: 30px;
+}
+
+.ourjourney-holder > span {
+  font-size: 28px;
+  font-family: "Comic Neue", cursive;
+  letter-spacing: 1px;
+}
+
+.ourJourney-discoveryHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: start;
+  padding-left: 12rem;
+  font-family: "Comic Neue", cursive;
+}
+
+.ourJourney-discoveryHolder > p {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.ourJourney-discoveryHolder > button {
+  cursor: pointer;
+  padding: 13px 25px;
+  background-color: #c9ce8c;
+  color: #232c08;
+  border: 1px solid #c9ce8c;
+  transition: 0.4s ease-in-out;
+}
+
+.ourJourney-discoveryHolder > button:hover {
+  background-color: #c9ce8c;
+  border: none;
+  background-color: #232c08;
+  color: #c9ce8c;
+  border: 1px solid #c9ce8c;
+}
+
+.getAnswer-parent >h2 {
+    font-size: 64px;
+    margin-bottom: 30px;
+}
+
+.getAnswer-parent > p {
+    font-size: 20px;
+    font-family: "Comic Neue", cursive;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+
+  .getAnswer-text-info {
+    padding-left: 12rem;
+  }
+
+  .getAnswer-text-info > p  {
+    padding: 20px 0;
+  }
+
+  .getAnswers-eachQuest-holder {
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    padding: 15px 0 20px 0;
+  }
+
+  .getAnswers-eachQuest-holder > p{
+    width: 50%;
+  }
+
+
+
+/* Media Queries--- */
+
+@media screen and (max-width: 950px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .dropdown-menu {
+    animation: slideFromLeft 0.7s ease-in-out;
+  }
+
+  .getAnswers-eachQuest-holder {
+    padding: 10px 0 20px 0;
+    flex-direction: column;
+}
+
+.getAnswers-eachQuest-holder > p {
+    width: 100%;
+  }
+
+  .getAnswer-bold {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .ourJourney-discoveryHolder {
+    gap: 25px;
+    padding-left: 0;
+  }
+
+  .getAnswer-text-info {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .heroSection {
+    padding: 5rem 2rem;
+  }
+  .heroSection > h1 {
+    font-size: 70px;
+  }
+  .ourjourney-parent {
+    padding: 3rem 2rem;
+  }
+}
