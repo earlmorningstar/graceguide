@@ -232,7 +232,6 @@
 }
 
 .ourJourney-discoveryHolder > button:hover {
-  background-color: #c9ce8c;
   border: none;
   background-color: #232c08;
   color: #c9ce8c;
@@ -270,6 +269,107 @@
     width: 50%;
   }
 
+  /* Footer Section---- */
+
+  .footer-parent {
+    background-color: #3e432f;
+    padding: 5rem;
+    color: #c9ce8c;
+  }
+
+  /* .rightsText {
+    margin-top: 20px;
+    color: #c9ce8c;
+  } */
+
+  .footer-flex {
+    margin: 35px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-flex > h2 {
+    font-size: 30px;
+  }
+
+  .footer-info-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .footer-sub-text > p {
+    font-size: 32px;
+    font-family: "Comic Neue", cursive;
+  }
+
+  .footer-addy-cont-holder {
+    display: flex;
+    gap: 40px;
+  }
+
+  .footerDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footerDetail > p {
+    font-family: "Comic Neue", cursive;
+
+  }
+
+  /* NewsLetter Section---- */
+
+  .newsletter > form > label {
+    font-family: "Comic Neue", cursive;
+    color: #c9ce8c;
+    font-size: 16px;
+}
+
+.newsletter-input-btn {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+  
+  .newsletter-input-btn > input[type="email"] {
+    background-color: #3e432f;
+    color: #dbddc6;
+    border: none;
+    border-bottom: 1px solid #c9ce8c;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    max-width: 100%;
+    outline: none;
+  }
+
+  .newsletter-input-btn > input:focus{
+    background-color: #232c08;
+  }
+
+  .newsletter-input-btn > button {
+    font-family: "Comic Neue", cursive;
+    cursor: pointer;
+    padding: 10px 45px;
+    background-color: #c9ce8c;
+    color: #232c08;
+    border: 1px solid #c9ce8c;
+    transition: 0.4s ease-in-out;
+  }
+
+  .newsletter-input-btn > button:hover {
+    border: none;
+    background-color: #232c08;
+    color: #c9ce8c;
+    border: 1px solid #c9ce8c;
+  }
+  
+  
+
+/* transition: background-color 0.3s; */  
+
 
 
 /* Media Queries--- */
@@ -299,6 +399,17 @@
   .getAnswer-bold {
     font-size: 18px;
   }
+
+  .heroSection {
+    padding: 5rem 5rem 3rem 5rem;
+  }
+
+  /* .image-container > img {
+    height: 60vh;
+    max-height: 60vh;
+    height: auto;
+    max-height: auto;
+  } */
 }
 
 @media screen and (max-width: 850px) {
@@ -310,16 +421,40 @@
   .getAnswer-text-info {
     padding-left: 0;
   }
+  .footer-flex {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .footer-addy-cont-holder{
+    flex-direction: column;
+  }
+  .newsletter-input-btn {
+    flex-direction: column;
+}
+.newsletter-input-btn > input[type="email"] {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 750px) {
   .heroSection {
-    padding: 5rem 2rem;
+    padding: 5rem 1rem 3rem 1rem;
   }
   .heroSection > h1 {
-    font-size: 70px;
+    font-size: 60px;
   }
   .ourjourney-parent {
-    padding: 3rem 2rem;
+    padding: 3rem 1rem;
   }
+  .ourjourney-holder > h2 {
+    font-size: 50px;
+  }
+  .getAnswer-parent >h2 {
+    font-size: 50px;
+}
+.footer-parent {
+    padding: 5rem 1rem;
+  }
+  
+
 }

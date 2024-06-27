@@ -1,4 +1,5 @@
 import EmpoweringFaith from "./EmpoweringFaith";
+import Footer from "./Footer";
 import OurJourney from "./OurJourney";
 
 function HomePage() {
@@ -6,6 +7,7 @@ function HomePage() {
     <>
       <EmpoweringFaith />
       <OurJourney />
+      <Footer />
     </>
   );
 }

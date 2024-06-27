@@ -1,4 +1,5 @@
 import ImageComponent from "./ImageComponent";
+import "./AllStyles.css";
 
 const images = [{ src: "/images/ourJourneyImage.jpg", alt: "hero image 1" }];
 
