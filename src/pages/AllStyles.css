@@ -404,6 +404,17 @@
   height: 100vh;
 }
 
+#nextVerse-button {
+    display: flex;
+    align-items: end;
+    font-weight: 500;
+}
+
+#nextVerse-button >  button{
+    font-size: 15px;
+    font-weight: 900;
+}
+
 .selection-label > h1,
 .selection-label > h2 {
   margin-bottom: 7px;

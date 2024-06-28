@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { 
-    // RingLoader, 
-    ClipLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
+// import AudioPlayer from "./AudioPlayer";
 import "./AllStyles.css";
 
 function Bible() {
@@ -17,6 +16,56 @@ function Bible() {
   const [loading, setLoading] = useState(true);
   const [verseLoading, setVerseLoading] = useState(false);
 
+//   const [audioBibles, setAudioBibles] = useState([]);
+//   const [audioUrl, setAudioUrl] = useState("");
+
+// useEffect(() => {
+//   const fetchAudioBibles = async () => {
+//     try {
+//       const response = await fetch(
+//         "https://api.scripture.api.bible/v1/audio-bibles",
+//         {
+//           headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
+//         }
+//       );
+//       const data = await response.json();
+//       setAudioBibles(data.data);
+//     } catch (error) {
+//       console.error("Error fetching audio bibles:", error);
+//     }
+//   };
+
+//   fetchAudioBibles();
+// }, []);
+
+
+// const fetchVerseAudio = async (versionId, chapterId, verseId) => {
+//     try {
+//       const response = await fetch(
+//         `https://api.scripture.api.bible/v1/bibles/${versionId}/audio?chapter=${chapterId}&verse=${verseId}`,
+//         {
+//           headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
+//         }
+//       );
+  
+//       if (!response.ok) {
+//         throw new Error(`HTTP error! status: ${response.status}`);
+//       }
+  
+//       const data = await response.json();
+//       setAudioUrl(data.data.url);
+//     } catch (error) {
+//       console.error("Error fetching verse audio:", error);
+//     }
+//   };
+  
+  
+//   useEffect(() => {
+//     if (selectedVerse) {
+//       fetchVerseAudio(selectedVersion, selectedBook, selectedChapter, selectedVerse);
+//     }
+//   }, [selectedVerse, selectedVersion, selectedBook, selectedChapter]);
+  
   const handleSelectVersion = (versionId) => {
     setSelectedVersion(versionId);
     setBooks([]);
@@ -46,6 +95,94 @@ function Bible() {
 
   const handleSelectVerse = (verseId) => {
     setSelectedVerse(verseId);
+  };
+
+  const fetchVerseText = async (versionId, verseId) => {
+    setVerseLoading(true);
+    try {
+      const response = await fetch(
+        `https://api.scripture.api.bible/v1/bibles/${versionId}/verses/${verseId}`,
+        {
+          headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
+        }
+      );
+      const data = await response.json();
+      setTimeout(() => {
+        setVerseText(data.data.content);
+        setVerseLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error("Error fetching verse text:", error);
+      setVerseLoading(false);
+    }
+  };
+
+  const fetchNextVerse = async () => {
+    if (!selectedVerse) return;
+
+    const currentVerseIndex = verses.findIndex((verse) => verse.id === selectedVerse);
+    const nextVerse = verses[currentVerseIndex + 1];
+
+    if (nextVerse) {
+      setSelectedVerse(nextVerse.id);
+      fetchVerseText(selectedVersion, nextVerse.id);
+    } else {
+      const currentChapterIndex = chapters.findIndex((chapter) => chapter.id === selectedChapter);
+      const nextChapter = chapters[currentChapterIndex + 1];
+
+      if (nextChapter) {
+        handleSelectChapter(nextChapter.id);
+        try {
+          const response = await fetch(
+            `https://api.scripture.api.bible/v1/bibles/${selectedVersion}/chapters/${nextChapter.id}/verses`,
+            {
+              headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
+            }
+          );
+          const data = await response.json();
+          setVerses(data.data);
+          const firstVerseId = data.data[0].id;
+          setSelectedVerse(firstVerseId);
+          fetchVerseText(selectedVersion, firstVerseId);
+        } catch (error) {
+          console.error("Error fetching next chapter verses:", error);
+        }
+      } else {
+        const currentBookIndex = books.findIndex((book) => book.id === selectedBook);
+        const nextBook = books[currentBookIndex + 1];
+
+        if (nextBook) {
+          handleSelectBook(nextBook.id);
+          try {
+            const response = await fetch(
+              `https://api.scripture.api.bible/v1/bibles/${selectedVersion}/books/${nextBook.id}/chapters`,
+              {
+                headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
+              }
+            );
+            const data = await response.json();
+            setChapters(data.data);
+            const firstChapterId = data.data[0].id;
+            handleSelectChapter(firstChapterId);
+            const chapterResponse = await fetch(
+              `https://api.scripture.api.bible/v1/bibles/${selectedVersion}/chapters/${firstChapterId}/verses`,
+              {
+                headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
+              }
+            );
+            const chapterData = await chapterResponse.json();
+            setVerses(chapterData.data);
+            const firstVerseId = chapterData.data[0].id;
+            setSelectedVerse(firstVerseId);
+            fetchVerseText(selectedVersion, firstVerseId);
+          } catch (error) {
+            console.error("Error fetching next book chapters and verses:", error);
+          }
+        } else {
+          console.log("No more books in this Bible version");
+        }
+      }
+    }
   };
 
   useEffect(() => {
@@ -134,27 +271,7 @@ function Bible() {
 
   useEffect(() => {
     if (selectedVerse) {
-      setVerseLoading(true);
-      const fetchVerseText = async () => {
-        try {
-          const response = await fetch(
-            `https://api.scripture.api.bible/v1/bibles/${selectedVersion}/verses/${selectedVerse}`,
-            {
-              headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
-            }
-          );
-          const data = await response.json();
-          setTimeout(() => {
-            setVerseText(data.data.content);
-            setVerseLoading(false);
-          }, 1000);
-        } catch (error) {
-          console.error("Error fetching verse text:", error);
-          setVerseLoading(false);
-        }
-      };
-
-      fetchVerseText();
+      fetchVerseText(selectedVersion, selectedVerse);
     }
   }, [selectedVerse, selectedVersion]);
 
@@ -250,6 +367,11 @@ function Bible() {
             <p>{stripHtmlTagsAndVerseNumber(verseText)}</p>
           )}
         </div>
+        <div className="ourJourney-discoveryHolder" id="nextVerse-button">
+            <button onClick={fetchNextVerse}>Next Verse</button>
+        </div>
+        {/* {audioUrl && <AudioPlayer audioUrl={audioUrl} />} */}
+        
       </div>
     </div>
   );

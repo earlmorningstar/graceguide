@@ -1,4 +1,5 @@
 import { FadeLoader } from 'react-spinners';
+import "./AllStyles.css";
 
 function LoadingComponent({isLoading, children}) {
     return (
