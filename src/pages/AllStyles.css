@@ -366,9 +366,73 @@
     border: 1px solid #c9ce8c;
   }
   
-  
 
-/* transition: background-color 0.3s; */  
+  /* Bible Section--- */
+
+  .bible-parent {
+    background-color: #3e432f;
+    color: #c9ce8c;
+    padding: 3rem 5rem;
+    height: 140vh;
+   
+  }
+
+  .bible-holder {
+    background-color: #3e432f;
+    color: #c9ce8c;
+    border: 1px solid #000000;
+    padding: 4rem;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #loader-id {
+    background-color: #3e432f;
+    height: 120vh;
+    margin: auto;
+  }
+
+  .selection-label > h1, .selection-label > h2 {
+    margin-bottom: 7px;
+  }
+
+  .selection-label > select {
+    background-color: #c9ce8c;
+    color: #232c08;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-family: "Comic Neue", cursive;
+  }
+
+  .selectedBibleVerse-parent {
+    border: 1px solid #c9ce8c;
+    padding: 2rem;
+  }
+
+  .selectedBibleVerse-parent >h2 {
+    margin-bottom: 1rem;
+  }
+
+.select-width {
+    width: 100%;
+  }
+  
+  .select-width option {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    max-width: 100%;
+  }
+  
 
 
 
@@ -433,6 +497,10 @@
 }
 .newsletter-input-btn > input[type="email"] {
     width: 100%;
+  }
+
+  .selection-label > h1 {
+    font-size: 25px;
   }
 }
 

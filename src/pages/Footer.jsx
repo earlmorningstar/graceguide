@@ -23,7 +23,7 @@ function Footer() {
             <p>Stay informed,</p>
             <p>subscribe to our newsletter</p>
           </div>
-         <NewsLetterSubscription />
+          <NewsLetterSubscription />
         </div>
       </div>
       <hr color="#c9ce8c" />

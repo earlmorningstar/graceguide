@@ -18,6 +18,9 @@ function RootLayout() {
           <NavLink to="/" className="root-nav" activeClassName="active">
             Home
           </NavLink>
+          <NavLink to="/bible" className="root-nav" activeClassName="active" end>
+            Bible
+          </NavLink>
           <NavLink to="/blog" className="root-nav" activeClassName="active" end>
             Blog
           </NavLink>
@@ -51,6 +54,14 @@ function RootLayout() {
               onClick={toggleDropdown}
             >
               Home
+            </NavLink>
+            <NavLink
+              to="/bible"
+              className="root-nav-dropDown"
+              onClick={toggleDropdown}
+              end
+            >
+              Bible
             </NavLink>
             <NavLink
               to="/products"
