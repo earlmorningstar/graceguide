@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage";
 import Bible from "./pages/Bible";
 import LoadingComponent from "./pages/LoadingComponent";
 import FullChapter from "./pages/FullChapter";
+import Blog from "./pages/Blog";
+import BlogDetailPage from "./pages/BlogDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -15,14 +17,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "/bible", element: <Bible />},
-      {path: '/fullChapter', element: <FullChapter />},
+      { path: "/bible", element: <Bible /> },
+      { path: "/fullChapter", element: <FullChapter /> },
+      { path: "/blog", element: <Blog /> },
+      {path: "/blog-detail", element: <BlogDetailPage />},
     ],
   },
 ]);
 
 function App() {
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -36,10 +39,9 @@ function App() {
 
   return (
     <>
-    <LoadingComponent isLoading={isLoading}>
-      <RouterProvider router={router} />
-    </LoadingComponent>
-      
+      <LoadingComponent isLoading={isLoading}>
+        <RouterProvider router={router} />
+      </LoadingComponent>
     </>
   );
 }
