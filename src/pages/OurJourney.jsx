@@ -18,7 +18,7 @@ function OurJourney() {
             </span>
           </div>
 
-          <div className="ourJourney-discoveryHolder">
+          <div className="ourJourney-discoveryHolder" id="ourJourney-discoveryHolder-id">
             <p>
               Discover the evolution of GraceGuide, a revolutionary app that has
               revolutionized the way you engage with sacred texts. Since 2000,
