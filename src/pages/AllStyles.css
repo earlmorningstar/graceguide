@@ -87,6 +87,22 @@
   left: 0;
   right: 0;
   animation: slideFromLeft 0.5s ease-in-out;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  scrollbar-width: thin; 
+  scrollbar-color: #888 transparent; 
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: transparent;
+  }
 }
 
 .nav-link-dropDown {
@@ -97,7 +113,7 @@
   background-color: #3e432f;
   padding: 40px 0 30px 0;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   border-bottom: 1px solid #c9ce8c;
 }
 
@@ -210,10 +226,8 @@
 
 .ourJourney-discoveryHolder {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 35px;
-  align-items: start;
-  padding-left: 12rem;
   font-family: "Comic Neue", cursive;
 }
 
@@ -557,4 +571,20 @@
   .selectedBibleVerse-parent > h2 {
     font-size: 20px;
   }
+}
+
+
+.fullChapter-parent {
+    background-color: #3e432f;
+    color: #c9ce8c;
+    height: 100vh;
+    padding: 2rem 5rem;
+}
+
+.fullChapter-chapter-holder{
+    border: 1px solid #000000;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

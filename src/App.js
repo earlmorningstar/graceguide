@@ -6,6 +6,7 @@ import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import Bible from "./pages/Bible";
 import LoadingComponent from "./pages/LoadingComponent";
+import FullChapter from "./pages/FullChapter";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "/bible", element: <Bible />},
-      // { path: "/products", element: <ProductsPage /> },
-      // { path: "/products/:productId", element: <ProductsDetailPage /> },
+      {path: '/fullChapter', element: <FullChapter />},
     ],
   },
 ]);
