@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import MainNavigation from "../components/MainNavigation";
 import SearchBar from "./SearchBar";
 import "./AllStyles.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiCloseLargeFill } from "react-icons/ri";
-import { useState } from "react";
 
 function RootLayout() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -64,7 +64,7 @@ function RootLayout() {
               Bible
             </NavLink>
             <NavLink
-              to="/products"
+              to="/blog"
               className="root-nav-dropDown"
               onClick={toggleDropdown}
               end

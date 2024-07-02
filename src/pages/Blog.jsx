@@ -34,7 +34,7 @@ function Blog() {
           <div className="blogPage-acct-menu">
             <span>
               <p>forpractice JavaScript</p>
-              <p>6 days ago * 2 min</p>
+              {/* <p>6 days ago * 2 min</p> */}
             </span>
             <SlOptionsVertical />
           </div>
