@@ -9,6 +9,7 @@ import LoadingComponent from "./pages/LoadingComponent";
 import FullChapter from "./pages/FullChapter";
 import Blog from "./pages/Blog";
 import BlogDetailPage from "./pages/BlogDetailPage";
+// import Chapter from "./pages/Chapter";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "/fullChapter", element: <FullChapter /> },
       { path: "/blog", element: <Blog /> },
       { path: "/blog-detail", element: <BlogDetailPage /> },
+      // {path: "/chapter", element: <Chapter />},
     ],
   },
 ]);

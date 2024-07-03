@@ -385,7 +385,6 @@
   background-color: #3e432f;
   color: #c9ce8c;
   padding: 3rem 5rem;
-  height: 100%;
 }
 
 .bible-holder {
@@ -537,7 +536,7 @@
   .blogPage-info-menu {
     display: flex;
     flex-direction: column;
-    gap: 140px;
+    gap: 70px;
     justify-content: space-between;
   }
   

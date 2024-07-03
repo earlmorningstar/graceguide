@@ -24,8 +24,7 @@ export const fetchVerseOfTheDay = async () => {
       throw error;
     }
   }; 
-
-
+  
 
 // // export const fetchVerseOfTheDay = async () => {
 // //     try {
