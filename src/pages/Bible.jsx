@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import "./AllStyles.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function Bible() {
   const [bibles, setBibles] = useState([]);
@@ -15,7 +15,7 @@ function Bible() {
   const [verseText, setVerseText] = useState("");
   const [loading, setLoading] = useState(true);
   const [verseLoading, setVerseLoading] = useState(false);
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 //   const [audioUrl, setAudioUrl] = useState("");
 
   const handleSelectVersion = (versionId) => {
@@ -358,17 +358,17 @@ function Bible() {
     );
   }
 
-  const handleReadFullChapter = () => {
-    if (selectedVersion && selectedBook && selectedChapter) {
-      navigate("/fullChapter", {
-        state: {
-          versionId: selectedVersion,
-          bookId: selectedBook,
-          chapterId: selectedChapter
-        }
-      });
-    }
-  };
+//   const handleReadFullChapter = () => {
+//     if (selectedVersion && selectedBook && selectedChapter) {
+//       navigate("/fullChapter", {
+//         state: {
+//           versionId: selectedVersion,
+//           bookId: selectedBook,
+//           chapterId: selectedChapter
+//         }
+//       });
+//     }
+//   };
 
   if (loading) {
     return (
@@ -461,7 +461,7 @@ function Bible() {
         </div>
         <div className="ourJourney-discoveryHolder" id="nextPrevious-buttons">
           <button onClick={fetchPreviousVerse}>Previous Verse</button>
-          <button onClick={handleReadFullChapter}>Read Full Chapter</button>
+          {/* <button onClick={handleReadFullChapter}>Read Full Chapter</button> */}
           <button onClick={fetchNextVerse}>Next Verse</button>
         </div>
       </div>
