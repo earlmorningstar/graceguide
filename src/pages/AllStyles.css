@@ -87,6 +87,7 @@
   top: 60px;
   left: 0;
   right: 0;
+  z-index: 1000;
   animation: slideFromLeft 0.5s ease-in-out;
   max-height: calc(100vh - 60px);
   overflow-y: auto;
@@ -772,8 +773,7 @@
   }
 
   .bible-parent {
-    padding: 3rem 1rem;
-    height: 100vh;
+    padding: 3rem 1rem
   }
   .bible-holder {
     padding: 4rem 1rem;
