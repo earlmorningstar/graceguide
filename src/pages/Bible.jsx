@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
-// import { useNavigate } from "react-router-dom";
 import "./AllStyles.css";
 
 function Bible() {
@@ -15,8 +14,6 @@ function Bible() {
   const [verseText, setVerseText] = useState("");
   const [loading, setLoading] = useState(true);
   const [verseLoading, setVerseLoading] = useState(false);
-  // const navigate = useNavigate();
-//   const [audioUrl, setAudioUrl] = useState("");
 
   const handleSelectVersion = (versionId) => {
     setSelectedVersion(versionId);
@@ -71,28 +68,6 @@ function Bible() {
       setVerseLoading(false);
     }
   };
-
-//   const fetchVerseAudio = async (versionId, chapterId, verseId) => {
-//     try {
-//       const response = await fetch(
-//         `https://api.scripture.api.bible/v1/bibles/${versionId}/audio?chapter=${chapterId}&verse=${verseId}`,
-//         {
-//           headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
-//         }
-//       );
-  
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! status: ${response.status}`);
-//       }
-  
-//       const data = await response.json();
-//       console.log("Audio API response:", data); // Audio response.
-  
-//       setAudioUrl(data.data.url); // Assuming 'data.data.url' contains the audio URL.
-//     } catch (error) {
-//       console.error("Error fetching verse audio:", error);
-//     }
-//   };
   
 
   const fetchNextVerse = async () => {
@@ -249,9 +224,13 @@ function Bible() {
         );
         const data = await response.json();
 
-        // Move particular bible version to the top
+        // Moved particular bible version to the top
         const reorderedBibles = data.data.sort((a, b) => {
-          const order = [ "de4e12af7f28f599-02","06125adad2d5898a-01", "7142879509583d59-01", "9879dbb7cfe39e4d-01", "01b29f4b342acc35-01",  ]; // Bible version actual IDs
+          const order = [ "de4e12af7f28f599-02",
+            "06125adad2d5898a-01", 
+            "7142879509583d59-01", 
+            "9879dbb7cfe39e4d-01", 
+            "01b29f4b342acc35-01", ]; // Bible version actual IDs from the api
           if (order.includes(a.id)) {
             return -1;
           }
@@ -358,27 +337,6 @@ function Bible() {
     );
   }
 
-  // const handleReadFullChapter = () => {
-  //   if (selectedVersion && selectedBook && selectedChapter) {
-  //     navigate("/chapter", {
-  //       state: {
-  //         versionId: selectedVersion,
-  //         bookId: selectedBook,
-  //         chapterId: selectedChapter
-  //       }
-  //     });
-  //   }
-  // };
-  
-
-  if (loading) {
-    return (
-      <div className="loader" id="loader-id">
-        <ClipLoader size={60} color={"#c9ce8c"} loading={loading} speedMultiplier={1} />
-      </div>
-    );
-  }
-
   return (
     <div className="bible-parent">
       <div className="bible-holder">
@@ -454,16 +412,9 @@ function Bible() {
           ) : (
             <p>{stripHtmlTagsAndVerseNumber(verseText)}</p>
           )}
-          {/* {audioUrl && (
-            <audio controls src={audioUrl}>
-              Your browser does not support the audio element.
-            </audio>
-          )} */}
         </div>
         <div className="ourJourney-discoveryHolder" id="nextPrevious-buttons">
           <button onClick={fetchPreviousVerse}>Previous Verse</button>
-          {/* <button onClick={handleReadFullChapter}>Find Chapter</button> */}
-          {/* <button>Find Verse</button> */}
           <button onClick={fetchNextVerse}>Next Verse</button>
         </div>
       </div>

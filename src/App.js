@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-
 import RootLayout from "./pages/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import Bible from "./pages/Bible";
 import LoadingComponent from "./pages/LoadingComponent";
-import FullChapter from "./pages/FullChapter";
 import Blog from "./pages/Blog";
 import BlogDetailPage from "./pages/BlogDetailPage";
-// import Chapter from "./pages/Chapter";
+
 
 const router = createBrowserRouter([
   {
@@ -19,10 +17,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "/bible", element: <Bible /> },
-      { path: "/fullChapter", element: <FullChapter /> },
       { path: "/blog", element: <Blog /> },
       { path: "/blog-detail", element: <BlogDetailPage /> },
-      // {path: "/chapter", element: <Chapter />},
     ],
   },
 ]);

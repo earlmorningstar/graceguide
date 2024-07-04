@@ -10,13 +10,13 @@ function Footer() {
         <div className="footer-info-holder">
           <div className="footer-addy-cont-holder">
             <span className="footerDetail">
-              <p>123-456-7890</p>
-              <p>info@mysite.com</p>
+              {/* <p>123-456-7890</p> */}
+              <p>onyeaborjoel@gmail.com</p>
             </span>
             <span className="footerDetail">
-              <p>500 Terry Francine Street,</p>
-              <p>6th Floor, San Francisco,</p>
-              <p>CA 94158</p>
+              <p>Address To Be Placed Right Here,</p>
+              <p>Country,</p>
+              <p>012345 EM.</p>
             </span>
           </div>
           <div className="footer-sub-text">
@@ -27,8 +27,7 @@ function Footer() {
         </div>
       </div>
       <hr color="#c9ce8c" />
-      {/* <span className="rightsText">©2024 Joelinton, Inc. (Earl Morningstar). All Rights Reserved</span> */}
-    </div>
+         </div>
   );
 }
 

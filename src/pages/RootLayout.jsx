@@ -39,9 +39,9 @@ function RootLayout() {
         </div>
         <div className="hamburger-menu" onClick={toggleDropdown}>
           {isDropdownOpen ? (
-            <RiCloseLargeFill size={26} color="#c9ce8c"/>
+            <RiCloseLargeFill size={35} color="#c9ce8c"/>
           ) : (
-            <RxHamburgerMenu size={26} color="#c9ce8c"/>
+            <RxHamburgerMenu size={35} color="#c9ce8c"/>
           )}
         </div>
       </MainNavigation>

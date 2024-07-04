@@ -13,6 +13,17 @@ function Blog() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const formatDate = (date) => {
+    const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+
+  const getYesterdayDate = () => {
+    const date = new Date();
+    date.setDate(date.getDate() - 1);
+    return formatDate(date);
+  };
+
   useEffect(() => {
     const getVerse = async () => {
       setLoading(true);
@@ -45,75 +56,76 @@ function Blog() {
     navigate("/blog-detail", { state: { verse } });
   };
 
+  const todayDate = formatDate(new Date());
+  const yesterdayDate = getYesterdayDate();
+
   return (
     <div className="blogPage-parent">
       <NavLink to='/'><span><BiArrowBack color="#c9ce8c" size={40}/></span></NavLink>
       <div className="blogPage-content-holder">
-        <div className="blogPage-text-acct">
-          {loading && (
-            <div className="loader-verse">
-              <ClipLoader
-                size={60}
-                color={"#c9ce8c"}
-                loading={loading}
-                speedMultiplier={1}
-              />
-            </div>
-          )}
-          {error && (
-            <p className="votd-error" style={{ color: "#c9ce8c" }}>
-              {error}
-            </p>
-          )}
-          {verse && (
-            <div
-              style={{ cursor: "pointer" }}
-              className="blogPage-info-menu"
-            >
-              <div className="blogPage-text">
-                <h2>Verse Of The Day:</h2>
-                <div className="verseHover"><span >{verse.text}</span>
-                <span>
-                  {verse.bookname} {verse.chapter}:{verse.verse}
-                </span>
-                <span>Bible Version: {verse.version}</span></div>
-                
-
-                <button className="exegesis-btn" onClick={handleVerseClick}>Full Exegesis Here:</button>
+        {loading ? (
+          <div className="loader-verse">
+            <ClipLoader size={60} color={"#c9ce8c"} loading={loading} speedMultiplier={1} />
+          </div>
+        ) : (
+          <div className="blogPage-text-acct">
+            {error && (
+              <p className="votd-error" style={{ color: "#c9ce8c" }}>
+                {error}
+              </p>
+            )}
+            {verse && (
+              <div
+                style={{ cursor: "pointer" }}
+                className="blogPage-info-menu"
+              >
+                <div className="blogPage-text">
+                  <h2>Verse Of The Day:</h2>
+                  <div className="verseHover"><span>{verse.text}</span>
+                  <span>
+                    {verse.bookname} {verse.chapter}:{verse.verse}
+                  </span>
+                  <span>Bible Version: {verse.version}</span></div>
+                  <button className="exegesis-btn" onClick={handleVerseClick}>Full Exegesis Here:</button>
+                </div>
+                <div className="heart-icon">
+                  <IoHeartOutline />
+                </div>
               </div>
-
-              
-              <div className="heart-icon">
-                <IoHeartOutline />
-              </div>
-            </div>
-          )}
-        </div>
+            )}
+            <span>{todayDate}.</span>
+          </div>
+        )}
       </div>
-      <div className="blogPage-content-holder" id="previousVotd-id">
-        <div className="blogPage-text-acct">
-          {prevVerse && (
-            <div
-              style={{ cursor: "pointer" }}
-              className="blogPage-info-menu"
-            >
-              <div className="blogPage-text">
-                <h2>Previous Verse Of The Day:</h2>
-                <span>{prevVerse.text}</span>
-                <span>
-                  {prevVerse.bookname} {prevVerse.chapter}:{prevVerse.verse}
-                </span>
-                <span>Bible Version: {prevVerse.version}</span>
+      {!loading && (
+        <div className="blogPage-content-holder" id="previousVotd-id">
+          <div className="blogPage-text-acct">
+            {prevVerse && (
+              <div
+                style={{ cursor: "pointer" }}
+                className="blogPage-info-menu"
+              >
+                <div className="blogPage-text">
+                  <h2>Previous Verse Of The Day:</h2>
+                  <span>{prevVerse.text}</span>
+                  <span>
+                    {prevVerse.bookname} {prevVerse.chapter}:{prevVerse.verse}
+                  </span>
+                  <span>Bible Version: {prevVerse.version}</span>
+                </div>
+                <div className="heart-icon">
+                  <IoHeartOutline />
+                </div>
               </div>
-              <div className="heart-icon">
-                <IoHeartOutline />
-              </div>
-            </div>
-          )}
+            )}
+            <span>{yesterdayDate}.</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 export default Blog;
+
+

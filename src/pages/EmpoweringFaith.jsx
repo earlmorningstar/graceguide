@@ -2,7 +2,7 @@ import './AllStyles.css';
 import ImageComponent from './ImageComponent';
 
 const images = [
-    { src: "/images/empowerFirstImg.jpg", alt: "hero image 1" },
+    { src: "/images/hero-img-sub.jpg", alt: "hero image 1" },
   ];
 
 function EmpoweringFaith(){
