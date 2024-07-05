@@ -186,8 +186,8 @@ const BibleReader = () => {
           </div>
 
           <div className="chapter-header-text">
-            <h2>
-              {selectedChapter && selectedChapter.includes(":")
+            <h2>    
+               {selectedChapter && selectedChapter.includes(":")
                 ? selectedChapter.split(":")[1]
                 : selectedChapter}
             </h2>

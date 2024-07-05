@@ -416,7 +416,7 @@ function Bible() {
               <ClipLoader size={40} color={"#c9ce8c"} loading={verseLoading} speedMultiplier={1} />
             </div>
           ) : (
-            <p>{stripHtmlTagsAndVerseNumber(verseText)}</p>
+            <span>{stripHtmlTagsAndVerseNumber(verseText)}</span>
           )}
         </div>
         <div className="ourJourney-discoveryHolder">

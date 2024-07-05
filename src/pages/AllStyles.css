@@ -483,6 +483,10 @@
   margin-bottom: 1rem;
 }
 
+.selectedBibleVerse-parent > span {
+  font-size: 19px;
+}
+
 .select-width {
   width: 100%;
 }
