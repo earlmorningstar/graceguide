@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 import "./AllStyles.css";
 
 function Bible() {
@@ -14,6 +15,7 @@ function Bible() {
   const [verseText, setVerseText] = useState("");
   const [loading, setLoading] = useState(true);
   const [verseLoading, setVerseLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSelectVersion = (versionId) => {
     setSelectedVersion(versionId);
@@ -212,6 +214,9 @@ function Bible() {
     }
   };
 
+  const handleReadFullVerse = () => {
+    navigate("/bible-reader");
+  };
 
   useEffect(() => {
     const fetchBibles = async () => {
@@ -226,15 +231,15 @@ function Bible() {
 
         // Moved particular bible version to the top
         const reorderedBibles = data.data.sort((a, b) => {
-          const order = [ "de4e12af7f28f599-02",
+          const priorityVersionIds = [ "de4e12af7f28f599-02",
             "06125adad2d5898a-01", 
             "7142879509583d59-01", 
             "9879dbb7cfe39e4d-01", 
             "01b29f4b342acc35-01", ]; // Bible version actual IDs from the api
-          if (order.includes(a.id)) {
+          if (priorityVersionIds.includes(a.id)) {
             return -1;
           }
-          if (order.includes(b.id)) {
+          if (priorityVersionIds.includes(b.id)) {
             return 1;
           }
           return 0;
@@ -339,9 +344,10 @@ function Bible() {
 
   return (
     <div className="bible-parent">
+      <button onClick={handleReadFullVerse}>Read Full Chapter</button>
       <div className="bible-holder">
         <div className="selection-label">
-          <h1>Select a Bible Version</h1>
+          <h2>Select a Bible Version</h2>
           <select className="select-width" onChange={(e) => handleSelectVersion(e.target.value)}>
             <option value="">Select a Version</option>
             {bibles.map((bible) => (
@@ -413,7 +419,7 @@ function Bible() {
             <p>{stripHtmlTagsAndVerseNumber(verseText)}</p>
           )}
         </div>
-        <div className="ourJourney-discoveryHolder" id="nextPrevious-buttons">
+        <div className="ourJourney-discoveryHolder">
           <button onClick={fetchPreviousVerse}>Previous Verse</button>
           <button onClick={fetchNextVerse}>Next Verse</button>
         </div>

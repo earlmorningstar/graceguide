@@ -7,6 +7,7 @@ import Bible from "./pages/Bible";
 import LoadingComponent from "./pages/LoadingComponent";
 import Blog from "./pages/Blog";
 import BlogDetailPage from "./pages/BlogDetailPage";
+import BibleReader from "./pages/BibleReader";
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/bible", element: <Bible /> },
       { path: "/blog", element: <Blog /> },
       { path: "/blog-detail", element: <BlogDetailPage /> },
+      {path: "/bible-reader", element: <BibleReader />},
     ],
   },
 ]);

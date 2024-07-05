@@ -393,6 +393,25 @@
   background-color: #3e432f;
   color: #c9ce8c;
   padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.bible-parent > button {
+  margin: 0 0 10px auto;
+  cursor: pointer;
+  padding: 10px 18px;
+  background-color: #c9ce8c;
+  color: #232c08;
+  border: 1px solid #c9ce8c;
+  transition: 0.4s ease-in-out;
+}
+
+.bible-parent > button:hover {
+  border: none;
+  background-color: #232c08;
+  color: #c9ce8c;
+  border: 1px solid #c9ce8c;
 }
 
 .bible-holder {
@@ -424,6 +443,10 @@
   padding-top: 15rem;
   background-color: #3e432f;
   height: 100vh;
+}
+
+.reader-s-loader {
+  margin: 10px 0 0 15px;
 }
 
 #nextVerse-button {
@@ -470,6 +493,24 @@
   text-overflow: ellipsis;
   max-width: 100%;
   font-size: 16px;
+}
+
+.chapter-header-text {
+  border: 1px solid #c9ce8c;
+  padding: 2rem 1rem;
+}
+.chapter-header-text > h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.chapter-header-text > span {
+  font-size: 19px;
+  line-height: 35px;
+}
+
+#nextPrevious-buttons {
+  margin-top: 25px;
 }
 
 /* BlogPage Section-- */
