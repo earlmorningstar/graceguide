@@ -9,7 +9,6 @@ import Blog from "./pages/Blog";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import BibleReader from "./pages/BibleReader";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/bible", element: <Bible /> },
       { path: "/blog", element: <Blog /> },
       { path: "/blog-detail", element: <BlogDetailPage /> },
-      {path: "/bible-reader", element: <BibleReader />},
+      { path: "/bible-reader", element: <BibleReader /> },
     ],
   },
 ]);

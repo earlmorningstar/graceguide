@@ -39,6 +39,10 @@
   color: #dbddc6;
 }
 
+.root-nav.active {
+  color: #ffffff;
+}
+
 .search-btn {
   display: flex;
   align-items: center;
@@ -722,6 +726,21 @@
   background-color: #c9ce8c;
   color: #232c08;
   border: 1px solid #232c088c;
+}
+
+.error-message {
+  height: 100vh;
+}
+
+#error-id {
+  background-color: #3e432f;
+  color: #c9ce8c;
+  padding: 5rem;
+}
+
+#error-id > p {
+  border: 1px solid #c9ce8c;
+  padding: 2rem;
 }
 
 /* Media Queries--- */

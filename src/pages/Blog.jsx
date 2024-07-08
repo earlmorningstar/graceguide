@@ -14,8 +14,13 @@ function Blog() {
   const [loading, setLoading] = useState(false);
 
   const formatDate = (date) => {
-    const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
+    const options = {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
   };
 
   const getYesterdayDate = () => {
@@ -31,7 +36,7 @@ function Blog() {
       try {
         const data = await fetchVerseOfTheDay();
         const storedVerse = JSON.parse(localStorage.getItem("currentVerse"));
-        
+
         if (storedVerse && storedVerse.text !== data.text) {
           localStorage.setItem("previousVerse", JSON.stringify(storedVerse));
           setPrevVerse(storedVerse);
@@ -61,11 +66,20 @@ function Blog() {
 
   return (
     <div className="blogPage-parent">
-      <NavLink to='/'><span><BiArrowBack color="#c9ce8c" size={40}/></span></NavLink>
+      <NavLink to="/">
+        <span>
+          <BiArrowBack color="#c9ce8c" size={40} />
+        </span>
+      </NavLink>
       <div className="blogPage-content-holder">
         {loading ? (
           <div className="loader-verse">
-            <ClipLoader size={60} color={"#c9ce8c"} loading={loading} speedMultiplier={1} />
+            <ClipLoader
+              size={60}
+              color={"#c9ce8c"}
+              loading={loading}
+              speedMultiplier={1}
+            />
           </div>
         ) : (
           <div className="blogPage-text-acct">
@@ -75,18 +89,19 @@ function Blog() {
               </p>
             )}
             {verse && (
-              <div
-                style={{ cursor: "pointer" }}
-                className="blogPage-info-menu"
-              >
+              <div style={{ cursor: "pointer" }} className="blogPage-info-menu">
                 <div className="blogPage-text">
                   <h2>Verse Of The Day:</h2>
-                  <div className="verseHover"><span>{verse.text}</span>
-                  <span>
-                    {verse.bookname} {verse.chapter}:{verse.verse}
-                  </span>
-                  <span>Bible Version: {verse.version}</span></div>
-                  <button className="exegesis-btn" onClick={handleVerseClick}>Full Exegesis Here:</button>
+                  <div className="verseHover">
+                    <span>{verse.text}</span>
+                    <span>
+                      {verse.bookname} {verse.chapter}:{verse.verse}
+                    </span>
+                    <span>Bible Version: {verse.version}</span>
+                  </div>
+                  <button className="exegesis-btn" onClick={handleVerseClick}>
+                    Full Exegesis Here:
+                  </button>
                 </div>
                 <div className="heart-icon">
                   <IoHeartOutline />
@@ -101,10 +116,7 @@ function Blog() {
         <div className="blogPage-content-holder" id="previousVotd-id">
           <div className="blogPage-text-acct">
             {prevVerse && (
-              <div
-                style={{ cursor: "pointer" }}
-                className="blogPage-info-menu"
-              >
+              <div style={{ cursor: "pointer" }} className="blogPage-info-menu">
                 <div className="blogPage-text">
                   <h2>Previous Verse Of The Day:</h2>
                   <span>{prevVerse.text}</span>
@@ -127,5 +139,3 @@ function Blog() {
 }
 
 export default Blog;
-
-

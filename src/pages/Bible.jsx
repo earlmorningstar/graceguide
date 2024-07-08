@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import "./AllStyles.css";
+// import SearchBar from "./SearchBar";
 
 function Bible() {
   const [bibles, setBibles] = useState([]);
@@ -15,7 +16,10 @@ function Bible() {
   const [verseText, setVerseText] = useState("");
   const [loading, setLoading] = useState(true);
   const [verseLoading, setVerseLoading] = useState(false);
+  const [error, setError] = useState(""); 
   const navigate = useNavigate();
+  // const [loadingSearch, setLoadingSearch] = useState(false);
+  // const [searchResults, setSearchResults] = useState([]);
 
   const handleSelectVersion = (versionId) => {
     setSelectedVersion(versionId);
@@ -26,7 +30,7 @@ function Bible() {
     setVerses([]);
     setSelectedVerse("");
     setVerseText("");
-    // setAudioUrl("");
+    setError("");
   };
 
   const handleSelectBook = (bookId) => {
@@ -36,7 +40,7 @@ function Bible() {
     setVerses([]);
     setSelectedVerse("");
     setVerseText("");
-    // setAudioUrl("");
+    setError("");
   };
 
   const handleSelectChapter = (chapterId) => {
@@ -44,7 +48,7 @@ function Bible() {
     setVerses([]);
     setSelectedVerse("");
     setVerseText("");
-    // setAudioUrl("");
+    setError("");
   };
 
   const handleSelectVerse = (verseId) => {
@@ -68,6 +72,7 @@ function Bible() {
     } catch (error) {
       console.error("Error fetching verse text:", error);
       setVerseLoading(false);
+      setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
     }
   };
   
@@ -81,7 +86,6 @@ function Bible() {
     if (nextVerse) {
       setSelectedVerse(nextVerse.id);
       fetchVerseText(selectedVersion, nextVerse.id);
-    //   fetchVerseAudio(selectedVersion, selectedChapter, nextVerse.id);
     } else {
       const currentChapterIndex = chapters.findIndex((chapter) => chapter.id === selectedChapter);
       const nextChapter = chapters[currentChapterIndex + 1];
@@ -100,7 +104,6 @@ function Bible() {
           const firstVerseId = data.data[0].id;
           setSelectedVerse(firstVerseId);
           fetchVerseText(selectedVersion, firstVerseId);
-        //   fetchVerseAudio(selectedVersion, nextChapter.id, firstVerseId);
         } catch (error) {
           console.error("Error fetching next chapter verses:", error);
         }
@@ -132,7 +135,6 @@ function Bible() {
             const firstVerseId = chapterData.data[0].id;
             setSelectedVerse(firstVerseId);
             fetchVerseText(selectedVersion, firstVerseId);
-            // fetchVerseAudio(selectedVersion, firstChapterId, firstVerseId);
           } catch (error) {
             console.error("Error fetching next book chapters and verses:", error);
           }
@@ -152,7 +154,6 @@ function Bible() {
     if (previousVerse) {
       setSelectedVerse(previousVerse.id);
       fetchVerseText(selectedVersion, previousVerse.id);
-    //   fetchVerseAudio(selectedVersion, selectedChapter, previousVerse.id);
     } else {
       const currentChapterIndex = chapters.findIndex((chapter) => chapter.id === selectedChapter);
       const previousChapter = chapters[currentChapterIndex - 1];
@@ -171,7 +172,6 @@ function Bible() {
           const lastVerseId = data.data[data.data.length - 1].id;
           setSelectedVerse(lastVerseId);
           fetchVerseText(selectedVersion, lastVerseId);
-        //   fetchVerseAudio(selectedVersion, previousChapter.id, lastVerseId);
         } catch (error) {
           console.error("Error fetching previous chapter verses:", error);
         }
@@ -203,7 +203,6 @@ function Bible() {
             const lastVerseId = chapterData.data[chapterData.data.length - 1].id;
             setSelectedVerse(lastVerseId);
             fetchVerseText(selectedVersion, lastVerseId);
-            // fetchVerseAudio(selectedVersion, lastChapterId, lastVerseId);
           } catch (error) {
             console.error("Error fetching previous book chapters and verses:", error);
           }
@@ -227,6 +226,10 @@ function Bible() {
             headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
           }
         );
+        if (!response.ok) {
+          throw new Error("Failed to fetch bibles");
+        }
+
         const data = await response.json();
 
         // Moved particular bible version to the top
@@ -250,6 +253,7 @@ function Bible() {
       } catch (error) {
         console.error("Error fetching bibles:", error);
         setLoading(false);
+        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
       }
     };
 
@@ -266,10 +270,14 @@ function Bible() {
               headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
             }
           );
+          if (!response.ok) {
+            throw new Error("Failed to fetch books");
+          }
           const data = await response.json();
           setBooks(data.data);
         } catch (error) {
           console.error("Error fetching books:", error);
+          setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
         }
       };
 
@@ -287,10 +295,14 @@ function Bible() {
               headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
             }
           );
+          if (!response.ok) {
+            throw new Error("Failed to fetch chapters");
+          }
           const data = await response.json();
           setChapters(data.data);
         } catch (error) {
           console.error("Error fetching chapters:", error);
+          setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
         }
       };
 
@@ -308,10 +320,14 @@ function Bible() {
               headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
             }
           );
+          if (!response.ok) {
+            throw new Error("Failed to fetch verses");
+          }
           const data = await response.json();
           setVerses(data.data);
         } catch (error) {
           console.error("Error fetching verses:", error);
+          setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
         }
       };
 
@@ -322,7 +338,6 @@ function Bible() {
   useEffect(() => {
     if (selectedVerse) {
       fetchVerseText(selectedVersion, selectedVerse);
-    //   fetchVerseAudio(selectedVersion, selectedChapter, selectedVerse);
     }
   }, [selectedVerse, selectedVersion, selectedChapter]);
 
@@ -342,7 +357,39 @@ function Bible() {
     );
   }
 
+  if (error) {
+    return (
+      <div className="error-message" id="error-id">
+        <p>{error}</p>
+      </div>
+    );
+  }
+
+  // const handleSearch = async (query) => {
+  //   setLoadingSearch(true);
+  //   setError("");
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.scripture.api.bible/v1/bibles/${selectedVersion}/search?query=${query}`,
+  //       {
+  //         headers: { "api-key": "8b8e15ab30542ab6ae60737cc6482eed" },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     setSearchResults(data.data);
+  //   } catch (error) {
+  //     console.error("Error fetching search results:", error);
+  //     setError(
+  //       "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+  //     );
+  //   } finally {
+  //     setLoadingSearch(false);
+  //   }
+  // };
+  // console.log(handleSearch);
+
   return (
+    
     <div className="bible-parent">
       <button onClick={handleReadFullVerse}>Read Full Chapter</button>
       <div className="bible-holder">
@@ -424,6 +471,24 @@ function Bible() {
           <button onClick={fetchNextVerse}>Next Verse</button>
         </div>
       </div>
+
+      {/* <SearchBar onSearch={handleSearch} />
+      {loadingSearch && (
+        <div className="loader">
+          <ClipLoader size={60} color={"#c9ce8c"} speedMultiplier={1} />
+        </div>
+      )}
+      {error && <div className="error-message">{error}</div>}
+      <div>
+        {searchResults.map((result) => (
+          <div key={result.id}>
+            <h3>{result.reference}</h3>
+            <p>{result.text}</p>
+          </div>
+        ))}
+      </div> */}
+
+
     </div>
   );
 }

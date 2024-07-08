@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import MainNavigation from "../components/MainNavigation";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import "./AllStyles.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiCloseLargeFill } from "react-icons/ri";
@@ -24,18 +24,15 @@ function RootLayout() {
           <NavLink to="/blog" className="root-nav" activeClassName="active" end>
             VOTD
           </NavLink>
-          <NavLink to="/programlist" className="root-nav" activeClassName="active" end>
-            Program List
-          </NavLink>
           <NavLink
-            to="/programlist"
+            to="/bible-reader"
             className="root-nav"
             activeClassName="active"
             end
           >
-            More
+           Read Full Chapter
           </NavLink>
-          <SearchBar />
+          {/* <SearchBar /> */}
         </div>
         <div className="hamburger-menu" onClick={toggleDropdown}>
           {isDropdownOpen ? (
@@ -72,38 +69,14 @@ function RootLayout() {
               VOTD
             </NavLink>
             <NavLink
-              to="/about"
+              to="/bible-reader"
               className="root-nav-dropDown"
               onClick={toggleDropdown}
               end
             >
-             Program List
+             Read Full Chapter
             </NavLink>
-            <NavLink
-              to="/about"
-              className="root-nav-dropDown"
-              onClick={toggleDropdown}
-              end
-            >
-             Plans & Pricing
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="root-nav-dropDown"
-              onClick={toggleDropdown}
-              end
-            >
-             Groups
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="root-nav-dropDown"
-              onClick={toggleDropdown}
-              end
-            >
-             Book Online
-            </NavLink>
-            <SearchBar className="root-nav-dropDown" />
+            {/* <SearchBar className="root-nav-dropDown" /> */}
           </div>
         </div>
       )}

@@ -15,11 +15,12 @@ const BibleReader = () => {
   const [loadingBooks, setLoadingBooks] = useState(false);
   const [loadingChapters, setLoadingChapters] = useState(false);
   const [loadingChapterText, setLoadingChapterText] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const apiKey = "8b8e15ab30542ab6ae60737cc6482eed";
   
-   // Moved particular bible version to the top of the select options
+  // Moved particular bible version to the top of the select options
   const priorityVersionIds = [
     "de4e12af7f28f599-02",
     "06125adad2d5898a-01",
@@ -42,7 +43,10 @@ const BibleReader = () => {
         setVersions(sortedVersions);
       })
       .finally(() => setLoading(false))
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+      });
   }, []);
 
   const fetchBooks = (bibleId) => {
@@ -58,7 +62,10 @@ const BibleReader = () => {
         setChapterText("");
       })
       .finally(() => setLoadingBooks(false))
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+      });
   };
 
   const fetchChapters = (bibleId, bookId) => {
@@ -73,7 +80,10 @@ const BibleReader = () => {
         setChapterText("");
       })
       .finally(() => setLoadingChapters(false))
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+      });
   };
 
   const fetchChapterText = (bibleId, chapterId) => {
@@ -92,7 +102,10 @@ const BibleReader = () => {
         setChapterText(verses.join(" "));
       })
       .finally(() => setLoadingChapterText(false))
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+      });
   };
 
   const handleBackToBibleBtn = () => {
@@ -122,7 +135,8 @@ const BibleReader = () => {
       <button onClick={handleBackToBibleBtn}>Back</button>
       
       {loading && <div className="loader" id="loader-id"><ClipLoader size={60} color={"#c9ce8c"} speedMultiplier={1} /></div>}
-      {!loading && (
+      {error && <div className="error-message">{error}</div>}
+      {!loading && !error && (
         <div className="bible-holder">
           <div className="selection-label">
             <h2>Select a Bible Version</h2>
