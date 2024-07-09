@@ -488,7 +488,6 @@ function Bible() {
         ))}
       </div> */}
 
-
     </div>
   );
 }

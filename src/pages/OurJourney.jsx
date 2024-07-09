@@ -25,7 +25,7 @@ function OurJourney() {
               we have been committed to enriching your spiritual journey with
               our diverse range of features and services.
             </p>
-            <button>Learn More</button>
+            {/* <button>Learn More</button> */}
             <ImageComponent src={images[0].src} alt={images[0].alt} />
           </div>
           <div className="getAnswer-parent">

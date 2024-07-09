@@ -26,11 +26,11 @@ function Explore() {
         <div>
           <img src="/images/bible-01.jpg" alt="bible img" />
         </div>
-        <h3>Discover Sacred Verses:</h3>
+        <h3>Discover Sacred Daily Verses:</h3>
         <span>
           Are you looking for a comprehensive and enriching experience with the
           Bible? Look no further than the GraceGuide app, a one-stop
-          destination for all your spiritual needs.
+          destination for all your spiritual needs...
         </span>
         <hr color="#3e432f"/>
       </div>
