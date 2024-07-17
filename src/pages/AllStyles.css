@@ -135,11 +135,11 @@
   color: #f0f1da;
 }
 
-.nav-links {
+/* .nav-links {
   display: flex;
   align-items: center;
   gap: 20px;
-}
+} */
 
 .nav-links > span {
   cursor: pointer;
