@@ -10,7 +10,7 @@ function BlogDetailPage() {
 
   return (
     <div className="detailPage-parent">
-         <NavLink to='/blog'><span><BiArrowBack color="#c9ce8c" size={40}/></span></NavLink>
+         <NavLink to='/votd'><span><BiArrowBack color="#c9ce8c" size={40}/></span></NavLink>
       <div className="detailPage">
         <h1>Insightful Exegesis</h1>
         {verse && (

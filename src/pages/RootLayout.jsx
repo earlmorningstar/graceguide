@@ -21,7 +21,7 @@ function RootLayout() {
           <NavLink to="/bible" className="root-nav" activeClassName="active" end>
             Bible
           </NavLink>
-          <NavLink to="/blog" className="root-nav" activeClassName="active" end>
+          <NavLink to="/votd" className="root-nav" activeClassName="active" end>
             VOTD
           </NavLink>
           <NavLink
@@ -61,7 +61,7 @@ function RootLayout() {
               Bible
             </NavLink>
             <NavLink
-              to="/blog"
+              to="/votd"
               className="root-nav-dropDown"
               onClick={toggleDropdown}
               end

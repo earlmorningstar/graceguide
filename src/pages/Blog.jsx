@@ -1,5 +1,5 @@
 import "./AllStyles.css";
-import { IoHeartOutline } from "react-icons/io5";
+// import { IoHeartOutline } from "react-icons/io5";
 import { BiArrowBack } from "react-icons/bi";
 import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from "react";
@@ -58,7 +58,7 @@ function Blog() {
   }, []);
 
   const handleVerseClick = () => {
-    navigate("/blog-detail", { state: { verse } });
+    navigate("/votd-detail", { state: { verse } });
   };
 
   const todayDate = formatDate(new Date());
@@ -103,9 +103,7 @@ function Blog() {
                     Full Exegesis Here:
                   </button>
                 </div>
-                <div className="heart-icon">
-                  <IoHeartOutline />
-                </div>
+                <div className="heart-icon">{/* <IoHeartOutline /> */}</div>
               </div>
             )}
             <span>{todayDate}.</span>
@@ -125,9 +123,7 @@ function Blog() {
                   </span>
                   <span>Bible Version: {prevVerse.version}</span>
                 </div>
-                <div className="heart-icon">
-                  <IoHeartOutline />
-                </div>
+                <div className="heart-icon">{/* <IoHeartOutline /> */}</div>
               </div>
             )}
             <span>{yesterdayDate}.</span>

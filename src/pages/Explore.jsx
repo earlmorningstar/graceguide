@@ -12,7 +12,7 @@ function Explore() {
       const todayDate = formatDate(new Date());
 
     const handleViewVotd = () => {
-        navigate("/blog");
+        navigate("/votd");
       };
 
 
