@@ -18,11 +18,16 @@ function RootLayout() {
           <NavLink to="/" className="root-nav" activeClassName="active">
             Home
           </NavLink>
-          <NavLink to="/bible" className="root-nav" activeClassName="active" end>
-            Bible
-          </NavLink>
           <NavLink to="/votd" className="root-nav" activeClassName="active" end>
             VOTD
+          </NavLink>
+          <NavLink
+            to="/bible"
+            className="root-nav"
+            activeClassName="active"
+            end
+          >
+            Bible
           </NavLink>
           <NavLink
             to="/bible-reader"
@@ -30,15 +35,23 @@ function RootLayout() {
             activeClassName="active"
             end
           >
-           Read Full Chapter
+            Read Full Chapter
+          </NavLink>
+          <NavLink
+            to="/dailyPrayer"
+            className="root-nav"
+            activeClassName="active"
+            end
+          >
+            Daily Prayer
           </NavLink>
           {/* <SearchBar /> */}
         </div>
         <div className="hamburger-menu" onClick={toggleDropdown}>
           {isDropdownOpen ? (
-            <RiCloseLargeFill size={35} color="#c9ce8c"/>
+            <RiCloseLargeFill size={35} color="#c9ce8c" />
           ) : (
-            <RxHamburgerMenu size={35} color="#c9ce8c"/>
+            <RxHamburgerMenu size={35} color="#c9ce8c" />
           )}
         </div>
       </MainNavigation>
@@ -53,14 +66,6 @@ function RootLayout() {
               Home
             </NavLink>
             <NavLink
-              to="/bible"
-              className="root-nav-dropDown"
-              onClick={toggleDropdown}
-              end
-            >
-              Bible
-            </NavLink>
-            <NavLink
               to="/votd"
               className="root-nav-dropDown"
               onClick={toggleDropdown}
@@ -69,12 +74,28 @@ function RootLayout() {
               VOTD
             </NavLink>
             <NavLink
+              to="/bible"
+              className="root-nav-dropDown"
+              onClick={toggleDropdown}
+              end
+            >
+              Bible
+            </NavLink>
+            <NavLink
               to="/bible-reader"
               className="root-nav-dropDown"
               onClick={toggleDropdown}
               end
             >
-             Read Full Chapter
+              Read Full Chapter
+            </NavLink>
+            <NavLink
+              to="/dailyPrayer"
+              className="root-nav-dropDown"
+              onClick={toggleDropdown}
+              end
+            >
+              Daily Prayer
             </NavLink>
             {/* <SearchBar className="root-nav-dropDown" /> */}
           </div>

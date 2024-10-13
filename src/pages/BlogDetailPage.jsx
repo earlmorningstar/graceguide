@@ -5,12 +5,15 @@ function BlogDetailPage() {
   const location = useLocation();
   const { verse } = location.state || {};
 
-  const summary =
-    "Explanation Of The Verse";
+  const summary = "Verse Breakdown";
 
   return (
     <div className="detailPage-parent">
-         <NavLink to='/votd'><span><BiArrowBack color="#c9ce8c" size={40}/></span></NavLink>
+      <NavLink to="/votd">
+        <span>
+          <BiArrowBack color="#c9ce8c" size={40} />
+        </span>
+      </NavLink>
       <div className="detailPage">
         <h1>Insightful Exegesis</h1>
         {verse && (

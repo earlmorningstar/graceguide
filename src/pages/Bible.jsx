@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 import "./AllStyles.css";
 // import SearchBar from "./SearchBar";
 
@@ -16,7 +17,7 @@ function Bible() {
   const [verseText, setVerseText] = useState("");
   const [loading, setLoading] = useState(true);
   const [verseLoading, setVerseLoading] = useState(false);
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   // const [loadingSearch, setLoadingSearch] = useState(false);
   // const [searchResults, setSearchResults] = useState([]);
@@ -72,22 +73,27 @@ function Bible() {
     } catch (error) {
       console.error("Error fetching verse text:", error);
       setVerseLoading(false);
-      setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+      setError(
+        "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+      );
     }
   };
-  
 
   const fetchNextVerse = async () => {
     if (!selectedVerse) return;
 
-    const currentVerseIndex = verses.findIndex((verse) => verse.id === selectedVerse);
+    const currentVerseIndex = verses.findIndex(
+      (verse) => verse.id === selectedVerse
+    );
     const nextVerse = verses[currentVerseIndex + 1];
 
     if (nextVerse) {
       setSelectedVerse(nextVerse.id);
       fetchVerseText(selectedVersion, nextVerse.id);
     } else {
-      const currentChapterIndex = chapters.findIndex((chapter) => chapter.id === selectedChapter);
+      const currentChapterIndex = chapters.findIndex(
+        (chapter) => chapter.id === selectedChapter
+      );
       const nextChapter = chapters[currentChapterIndex + 1];
 
       if (nextChapter) {
@@ -108,7 +114,9 @@ function Bible() {
           console.error("Error fetching next chapter verses:", error);
         }
       } else {
-        const currentBookIndex = books.findIndex((book) => book.id === selectedBook);
+        const currentBookIndex = books.findIndex(
+          (book) => book.id === selectedBook
+        );
         const nextBook = books[currentBookIndex + 1];
 
         if (nextBook) {
@@ -136,7 +144,10 @@ function Bible() {
             setSelectedVerse(firstVerseId);
             fetchVerseText(selectedVersion, firstVerseId);
           } catch (error) {
-            console.error("Error fetching next book chapters and verses:", error);
+            console.error(
+              "Error fetching next book chapters and verses:",
+              error
+            );
           }
         } else {
           console.log("No more books in this Bible version");
@@ -148,14 +159,18 @@ function Bible() {
   const fetchPreviousVerse = async () => {
     if (!selectedVerse) return;
 
-    const currentVerseIndex = verses.findIndex((verse) => verse.id === selectedVerse);
+    const currentVerseIndex = verses.findIndex(
+      (verse) => verse.id === selectedVerse
+    );
     const previousVerse = verses[currentVerseIndex - 1];
 
     if (previousVerse) {
       setSelectedVerse(previousVerse.id);
       fetchVerseText(selectedVersion, previousVerse.id);
     } else {
-      const currentChapterIndex = chapters.findIndex((chapter) => chapter.id === selectedChapter);
+      const currentChapterIndex = chapters.findIndex(
+        (chapter) => chapter.id === selectedChapter
+      );
       const previousChapter = chapters[currentChapterIndex - 1];
 
       if (previousChapter) {
@@ -176,7 +191,9 @@ function Bible() {
           console.error("Error fetching previous chapter verses:", error);
         }
       } else {
-        const currentBookIndex = books.findIndex((book) => book.id === selectedBook);
+        const currentBookIndex = books.findIndex(
+          (book) => book.id === selectedBook
+        );
         const previousBook = books[currentBookIndex - 1];
 
         if (previousBook) {
@@ -200,11 +217,15 @@ function Bible() {
             );
             const chapterData = await chapterResponse.json();
             setVerses(chapterData.data);
-            const lastVerseId = chapterData.data[chapterData.data.length - 1].id;
+            const lastVerseId =
+              chapterData.data[chapterData.data.length - 1].id;
             setSelectedVerse(lastVerseId);
             fetchVerseText(selectedVersion, lastVerseId);
           } catch (error) {
-            console.error("Error fetching previous book chapters and verses:", error);
+            console.error(
+              "Error fetching previous book chapters and verses:",
+              error
+            );
           }
         } else {
           console.log("No more books in this Bible version");
@@ -234,11 +255,13 @@ function Bible() {
 
         // Moved particular bible version to the top
         const reorderedBibles = data.data.sort((a, b) => {
-          const priorityVersionIds = [ "de4e12af7f28f599-02",
-            "06125adad2d5898a-01", 
-            "7142879509583d59-01", 
-            "9879dbb7cfe39e4d-01", 
-            "01b29f4b342acc35-01", ]; // Bible version actual IDs from the api
+          const priorityVersionIds = [
+            "de4e12af7f28f599-02",
+            "06125adad2d5898a-01",
+            "7142879509583d59-01",
+            "9879dbb7cfe39e4d-01",
+            "01b29f4b342acc35-01",
+          ]; // Bible version actual IDs from the api
           if (priorityVersionIds.includes(a.id)) {
             return -1;
           }
@@ -253,7 +276,9 @@ function Bible() {
       } catch (error) {
         console.error("Error fetching bibles:", error);
         setLoading(false);
-        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+        setError(
+          "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+        );
       }
     };
 
@@ -277,7 +302,9 @@ function Bible() {
           setBooks(data.data);
         } catch (error) {
           console.error("Error fetching books:", error);
-          setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+          setError(
+            "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+          );
         }
       };
 
@@ -302,7 +329,9 @@ function Bible() {
           setChapters(data.data);
         } catch (error) {
           console.error("Error fetching chapters:", error);
-          setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+          setError(
+            "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+          );
         }
       };
 
@@ -327,7 +356,9 @@ function Bible() {
           setVerses(data.data);
         } catch (error) {
           console.error("Error fetching verses:", error);
-          setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+          setError(
+            "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+          );
         }
       };
 
@@ -352,7 +383,12 @@ function Bible() {
   if (loading) {
     return (
       <div className="loader" id="loader-id">
-        <ClipLoader size={60} color={"#c9ce8c"} loading={loading} speedMultiplier={1} />
+        <ClipLoader
+          size={60}
+          color={"#c9ce8c"}
+          loading={loading}
+          speedMultiplier={1}
+        />
       </div>
     );
   }
@@ -389,13 +425,20 @@ function Bible() {
   // console.log(handleSearch);
 
   return (
-    
     <div className="bible-parent">
+      <NavLink to="/">
+        <span>
+          <BiArrowBack color="#c9ce8c" size={40} />
+        </span>
+      </NavLink>
       <button onClick={handleReadFullVerse}>Read Full Chapter</button>
       <div className="bible-holder">
         <div className="selection-label">
           <h2>Select a Bible Version</h2>
-          <select className="select-width" onChange={(e) => handleSelectVersion(e.target.value)}>
+          <select
+            className="select-width"
+            onChange={(e) => handleSelectVersion(e.target.value)}
+          >
             <option value="">Select a Version</option>
             {bibles.map((bible) => (
               <option key={bible.id} value={bible.id}>
@@ -460,7 +503,12 @@ function Bible() {
           <h2>Selected Verse:</h2>
           {verseLoading ? (
             <div className="loader">
-              <ClipLoader size={40} color={"#c9ce8c"} loading={verseLoading} speedMultiplier={1} />
+              <ClipLoader
+                size={40}
+                color={"#c9ce8c"}
+                loading={verseLoading}
+                speedMultiplier={1}
+              />
             </div>
           ) : (
             <span>{stripHtmlTagsAndVerseNumber(verseText)}</span>
@@ -487,7 +535,6 @@ function Bible() {
           </div>
         ))}
       </div> */}
-
     </div>
   );
 }

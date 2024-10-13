@@ -172,7 +172,7 @@
 
 .heroSection {
   background-color: #c9ce8c;
-  padding: 4rem 5rem 5rem 5rem;
+  padding: 3rem 5rem 5rem 5rem;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -206,7 +206,7 @@
   height: auto;
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* OurJourney Section---- */
@@ -329,10 +329,10 @@
   font-family: "Comic Neue", cursive;
 }
 
-.footer-addy-cont-holder {
+/* .footer-addy-cont-holder {
   display: flex;
   gap: 40px;
-}
+} */
 
 .footerDetail {
   display: flex;
@@ -342,6 +342,13 @@
 
 .footerDetail > p {
   font-family: "Comic Neue", cursive;
+}
+
+.rights {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  margin-top: 5px;
 }
 
 /* NewsLetter Section---- */
@@ -611,6 +618,51 @@
   font-style: italic;
 }
 
+/* Verse-Prayer Section-- */
+
+.verse-prayer-container {
+  background-color: #3e432f;
+  color: #c9ce8c;
+  padding: 4rem 5rem;
+  height: 100vh;
+}
+
+.verse-prayer-contentHolder {
+  border: 1px solid #c9ce8c;
+  padding: 4rem;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.verse-prayer-contentHolder > div h3 {
+  margin-bottom: 15px;
+}
+
+.verse-prayer-contentHolder > div > span {
+  margin-bottom: 20px;
+}
+
+.homeBtn button {
+  display: flex;
+    margin: 0 0 10px auto;
+    cursor: pointer;
+    padding: 10px 18px;
+    background-color: #c9ce8c;
+    color: #232c08;
+    border: 1px solid #c9ce8c;
+    transition: 0.4s ease-in-out;
+  }
+  
+  .homeBtn button:hover {
+    border: none;
+    background-color: #232c08;
+    color: #c9ce8c;
+    border: 1px solid #c9ce8c;
+  }
+
+
 /* BlogDetailPage Section-- */
 
 .detailPage-parent {
@@ -772,7 +824,7 @@
   }
 
   .heroSection {
-    padding: 4rem 5rem 3rem 5rem;
+    padding: 3rem 5rem;
   }
 }
 
@@ -789,9 +841,9 @@
     flex-direction: column;
     gap: 50px;
   }
-  .footer-addy-cont-holder {
+  /* .footer-addy-cont-holder {
     flex-direction: column;
-  }
+  } */
   .newsletter-input-btn {
     flex-direction: column;
   }
@@ -818,7 +870,7 @@
 
 @media screen and (max-width: 750px) {
   .heroSection {
-    padding: 4rem 1rem 3rem 1rem;
+    padding: 3rem 1rem;
   }
   .heroSection > h1 {
     font-size: 56px;
@@ -837,7 +889,7 @@
   }
 
   .bible-parent {
-    padding: 3rem 1rem
+    padding: 3rem 1rem;
   }
   .bible-holder {
     padding: 4rem 1rem;
@@ -887,5 +939,14 @@
   .explore-info-holder > div {
     width: 100%;
     height: auto;
+  }
+  .verse-prayer-contentHolder {
+    padding: 4rem 1rem;
+  }
+  .verse-prayer-container {
+    padding: 4rem 1rem;
+  }
+  .error-page-main {
+    padding: 5rem 1rem;
   }
 }

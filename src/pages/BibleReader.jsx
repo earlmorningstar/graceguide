@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import { BiArrowBack } from "react-icons/bi";
 import "./AllStyles.css";
 
 const BibleReader = () => {
@@ -19,7 +20,7 @@ const BibleReader = () => {
   const navigate = useNavigate();
 
   const apiKey = "8b8e15ab30542ab6ae60737cc6482eed";
-  
+
   // Moved particular bible version to the top of the select options
   const priorityVersionIds = [
     "de4e12af7f28f599-02",
@@ -36,8 +37,12 @@ const BibleReader = () => {
       .then((response) => response.json())
       .then((data) => {
         const sortedVersions = data.data.sort((a, b) => {
-          const aPriority = priorityVersionIds.includes(a.id) ? priorityVersionIds.indexOf(a.id) : Infinity;
-          const bPriority = priorityVersionIds.includes(b.id) ? priorityVersionIds.indexOf(b.id) : Infinity;
+          const aPriority = priorityVersionIds.includes(a.id)
+            ? priorityVersionIds.indexOf(a.id)
+            : Infinity;
+          const bPriority = priorityVersionIds.includes(b.id)
+            ? priorityVersionIds.indexOf(b.id)
+            : Infinity;
           return aPriority - bPriority;
         });
         setVersions(sortedVersions);
@@ -45,7 +50,9 @@ const BibleReader = () => {
       .finally(() => setLoading(false))
       .catch((error) => {
         console.error(error);
-        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+        setError(
+          "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+        );
       });
   }, []);
 
@@ -64,15 +71,20 @@ const BibleReader = () => {
       .finally(() => setLoadingBooks(false))
       .catch((error) => {
         console.error(error);
-        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+        setError(
+          "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+        );
       });
   };
 
   const fetchChapters = (bibleId, bookId) => {
     setLoadingChapters(true);
-    fetch(`https://api.scripture.api.bible/v1/bibles/${bibleId}/books/${bookId}/chapters`, {
-      headers: { "api-key": apiKey },
-    })
+    fetch(
+      `https://api.scripture.api.bible/v1/bibles/${bibleId}/books/${bookId}/chapters`,
+      {
+        headers: { "api-key": apiKey },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         setChapters(data.data);
@@ -82,15 +94,20 @@ const BibleReader = () => {
       .finally(() => setLoadingChapters(false))
       .catch((error) => {
         console.error(error);
-        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+        setError(
+          "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+        );
       });
   };
 
   const fetchChapterText = (bibleId, chapterId) => {
     setLoadingChapterText(true);
-    fetch(`https://api.scripture.api.bible/v1/bibles/${bibleId}/chapters/${chapterId}`, {
-      headers: { "api-key": apiKey },
-    })
+    fetch(
+      `https://api.scripture.api.bible/v1/bibles/${bibleId}/chapters/${chapterId}`,
+      {
+        headers: { "api-key": apiKey },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         const parser = new DOMParser();
@@ -104,16 +121,20 @@ const BibleReader = () => {
       .finally(() => setLoadingChapterText(false))
       .catch((error) => {
         console.error(error);
-        setError("Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience.");
+        setError(
+          "Oops! Something went wrong. The issue might be on our end, so please don't be discouraged. Make sure your internet connection is active, and try refreshing the page or come back later. Rest assured, we're working swiftly to restore this page for you as soon as possible. Thank you for your patience."
+        );
       });
   };
 
-  const handleBackToBibleBtn = () => {
-    navigate("/bible");
+  const handleBackToHomeBtn = () => {
+    navigate("/");
   };
 
   const handlePrevChapter = () => {
-    const currentIndex = chapters.findIndex(chapter => chapter.id === selectedChapter);
+    const currentIndex = chapters.findIndex(
+      (chapter) => chapter.id === selectedChapter
+    );
     if (currentIndex > 0) {
       const prevChapterId = chapters[currentIndex - 1].id;
       setSelectedChapter(prevChapterId);
@@ -122,7 +143,9 @@ const BibleReader = () => {
   };
 
   const handleNextChapter = () => {
-    const currentIndex = chapters.findIndex(chapter => chapter.id === selectedChapter);
+    const currentIndex = chapters.findIndex(
+      (chapter) => chapter.id === selectedChapter
+    );
     if (currentIndex < chapters.length - 1) {
       const nextChapterId = chapters[currentIndex + 1].id;
       setSelectedChapter(nextChapterId);
@@ -132,9 +155,18 @@ const BibleReader = () => {
 
   return (
     <div className="bible-parent" id="readerFullBk">
-      <button onClick={handleBackToBibleBtn}>Back</button>
-      
-      {loading && <div className="loader" id="loader-id"><ClipLoader size={60} color={"#c9ce8c"} speedMultiplier={1} /></div>}
+      <NavLink to="/bible">
+        <span>
+          <BiArrowBack color="#c9ce8c" size={40} />
+        </span>
+      </NavLink>
+      <button onClick={handleBackToHomeBtn}>Home</button>
+
+      {loading && (
+        <div className="loader" id="loader-id">
+          <ClipLoader size={60} color={"#c9ce8c"} speedMultiplier={1} />
+        </div>
+      )}
       {error && <div className="error-message">{error}</div>}
       {!loading && !error && (
         <div className="bible-holder">
@@ -155,7 +187,11 @@ const BibleReader = () => {
                 </option>
               ))}
             </select>
-            {loadingBooks && <div className="reader-s-loader"><ClipLoader size={15} color={"#c9ce8c"} speedMultiplier={1} /></div> }
+            {loadingBooks && (
+              <div className="reader-s-loader">
+                <ClipLoader size={15} color={"#c9ce8c"} speedMultiplier={1} />
+              </div>
+            )}
           </div>
 
           <div className="selection-label">
@@ -176,7 +212,11 @@ const BibleReader = () => {
                 </option>
               ))}
             </select>
-            {loadingChapters && <div className="reader-s-loader"><ClipLoader size={15} color={"#c9ce8c"} speedMultiplier={1} /></div>}
+            {loadingChapters && (
+              <div className="reader-s-loader">
+                <ClipLoader size={15} color={"#c9ce8c"} speedMultiplier={1} />
+              </div>
+            )}
           </div>
 
           <div className="selection-label">
@@ -200,8 +240,8 @@ const BibleReader = () => {
           </div>
 
           <div className="chapter-header-text">
-            <h2>    
-               {selectedChapter && selectedChapter.includes(":")
+            <h2>
+              {selectedChapter && selectedChapter.includes(":")
                 ? selectedChapter.split(":")[1]
                 : selectedChapter}
             </h2>
@@ -212,9 +252,16 @@ const BibleReader = () => {
             ) : (
               <span>{chapterText}</span>
             )}
-            <div className="ourJourney-discoveryHolder" id="nextPrevious-buttons">
-              <button onClick={handlePrevChapter} disabled={!chapterText}>Prev Chapter</button>
-              <button onClick={handleNextChapter} disabled={!chapterText}>Next Chapter</button>
+            <div
+              className="ourJourney-discoveryHolder"
+              id="nextPrevious-buttons"
+            >
+              <button onClick={handlePrevChapter} disabled={!chapterText}>
+                Prev Chapter
+              </button>
+              <button onClick={handleNextChapter} disabled={!chapterText}>
+                Next Chapter
+              </button>
             </div>
           </div>
         </div>

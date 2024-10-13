@@ -11,7 +11,7 @@ function Footer() {
           <div className="footer-addy-cont-holder">
             <span className="footerDetail">
               {/* <p>123-456-7890</p> */}
-              <p>onyeaborjoel@gmail.com</p>
+              {/* <p>joelintoninc@gmail.com</p> */}
             </span>
             <span className="footerDetail">
               <p>Address To Be Placed Right Here,</p>
@@ -27,6 +27,7 @@ function Footer() {
         </div>
       </div>
       <hr color="#c9ce8c" />
+      <div className="rights">©2024 Joelinton, Inc. (Earl Morningstar). All Rights Reserved.</div>
          </div>
   );
 }

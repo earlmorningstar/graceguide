@@ -8,6 +8,7 @@ import LoadingComponent from "./pages/LoadingComponent";
 import Blog from "./pages/Blog";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import BibleReader from "./pages/BibleReader";
+import VerseAndPrayerOTD from "./pages/VerseAndPrayerOTD";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/votd", element: <Blog /> },
       { path: "/votd-detail", element: <BlogDetailPage /> },
       { path: "/bible-reader", element: <BibleReader /> },
+      { path: "/dailyPrayer", element: <VerseAndPrayerOTD /> },
     ],
   },
 ]);
