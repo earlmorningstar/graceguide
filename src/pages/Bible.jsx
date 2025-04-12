@@ -3,7 +3,6 @@ import { ClipLoader } from "react-spinners";
 import { useNavigate, NavLink } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import "./AllStyles.css";
-// import SearchBar from "./SearchBar";
 
 function Bible() {
   const [bibles, setBibles] = useState([]);
@@ -19,9 +18,6 @@ function Bible() {
   const [verseLoading, setVerseLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  // const [loadingSearch, setLoadingSearch] = useState(false);
-  // const [searchResults, setSearchResults] = useState([]);
-
   const handleSelectVersion = (versionId) => {
     setSelectedVersion(versionId);
     setBooks([]);

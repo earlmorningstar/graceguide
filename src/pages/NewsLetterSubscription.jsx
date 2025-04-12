@@ -17,7 +17,6 @@ function NewsLetterSubscription() {
           <div className="newsletter-input-btn">
             <input
               type="email"
-            //   placeholder="Your email goes here"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

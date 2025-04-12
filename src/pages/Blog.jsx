@@ -1,5 +1,4 @@
 import "./AllStyles.css";
-// import { IoHeartOutline } from "react-icons/io5";
 import { BiArrowBack } from "react-icons/bi";
 import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from "react";
